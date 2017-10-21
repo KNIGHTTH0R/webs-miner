@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-"""Initialize the external packages"""
+
+"""Import init packages module"""
 
 from .init_packages import initialize
