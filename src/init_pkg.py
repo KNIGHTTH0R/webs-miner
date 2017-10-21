@@ -5,7 +5,7 @@
 
 from os.path import dirname, exists, realpath
 
-import init_packages
+import download_external_pkg
 
 
 def initialize(force_init=False):
@@ -15,7 +15,7 @@ def initialize(force_init=False):
     _current_directory = dirname(realpath(__file__))
 
     if not exists(_current_directory + '/pkg/'):
-        init_packages.init_packages.initialize(delete_pkg=True)
+        download_external_pkg.download_external_pkg.initialize(delete_old_pkg=True)
 
     if force_init:
-        init_packages.init_packages.initialize(delete_pkg=True)
+        download_external_pkg.download_external_pkg.initialize(delete_old_pkg=True)

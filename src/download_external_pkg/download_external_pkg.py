@@ -52,12 +52,12 @@ def _extract_pkg_modules():
         tar_gz_file.extractall(_src_directory)
 
 
-def initialize(delete_pkg=True):
+def initialize(delete_old_pkg=True):
     """Init the process to check the external packages.
     Check if the external packages exist otherwise it remove the old then download and extract the new packages.
     """
 
-    if delete_pkg:
+    if delete_old_pkg:
         _delete_pkg_file_and_folder()
 
     if _download_pkg_modules():

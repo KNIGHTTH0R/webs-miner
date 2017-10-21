@@ -3,4 +3,4 @@
 
 """Import init packages module"""
 
-from .init_packages import initialize
+from .download_external_pkg import initialize
