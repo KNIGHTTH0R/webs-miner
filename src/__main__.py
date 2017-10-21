@@ -3,8 +3,9 @@
 
 """Main/Initial script for extract the data from the web sites."""
 
-import init_pkg
 import yaml
+
+from init import init_pkg
 
 init_pkg.initialize()
 

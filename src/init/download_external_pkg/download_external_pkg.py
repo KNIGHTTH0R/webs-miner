@@ -8,31 +8,44 @@ https://raw.githubusercontent.com/airvzxf/python-packages/master/versions/pkg_la
 
 import shutil
 import tarfile
+from os import remove
 from os.path import dirname, exists, isdir, realpath
 # noinspection PyCompatibility
 from urllib.request import urlretrieve
 
 import requests
 
-_src_directory = dirname(realpath(__file__)) + '/../'
-_pkg_directory = _src_directory + 'pkg/'
-_pkg_file_name = 'pkg_last_version.tar.gz'
-_pkg_url = 'https://raw.githubusercontent.com/airvzxf/python-packages/master/versions/' + _pkg_file_name
+_src_directory = dirname(realpath(__file__)) + '/../../'
+_pkg_file_name = _src_directory + 'pkg_last_version.tar.gz'
+_pkg_url = 'https://raw.githubusercontent.com/airvzxf/python-packages/master/versions/pkg_last_version.tar.gz'
+
+
+def _delete_pkg_folder():
+    pkg_directory = _src_directory + 'pkg/'
+
+    if exists(pkg_directory) and isdir(pkg_directory):
+        shutil.rmtree(pkg_directory)
+
+
+def _delete_pkg_file():
+    if exists(_pkg_file_name):
+        remove(_pkg_file_name)
 
 
 def _download_pkg_file():
-    urlretrieve(_pkg_url, _src_directory + _pkg_file_name)
+    _delete_pkg_file()
+    urlretrieve(_pkg_url, _pkg_file_name)
 
 
 def _download_pkg_modules():
-    if not exists(_src_directory + _pkg_file_name):
+    if not exists(_pkg_file_name):
         _download_pkg_file()
         return True
 
     response = requests.head(_pkg_url)
     file_size = int(response.headers.get('Content-Length'))
 
-    with open(_src_directory + _pkg_file_name, 'rb') as local_file:
+    with open(_pkg_file_name, 'rb') as local_file:
         if file_size != len(local_file.read()):
             _download_pkg_file()
             return True
@@ -40,15 +53,9 @@ def _download_pkg_modules():
     return False
 
 
-def _delete_pkg_file_and_folder():
-    if exists(_pkg_directory) and isdir(_pkg_directory):
-        shutil.rmtree(_pkg_directory)
-
-
 def _extract_pkg_modules():
-    _delete_pkg_file_and_folder()
-
-    with tarfile.open(_src_directory + _pkg_file_name, 'r:gz') as tar_gz_file:
+    with tarfile.open(_pkg_file_name, 'r:gz') as tar_gz_file:
+        _delete_pkg_folder()
         tar_gz_file.extractall(_src_directory)
 
 
@@ -58,9 +65,9 @@ def initialize(delete_old_pkg=True):
     """
 
     if delete_old_pkg:
-        _delete_pkg_file_and_folder()
+        _delete_pkg_file()
 
     if _download_pkg_modules():
-        print("Download {}".format(_pkg_file_name))
+        print("Download pkg file.")
         _extract_pkg_modules()
         print("Extracted packages.")
