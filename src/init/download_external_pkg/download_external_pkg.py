@@ -71,3 +71,4 @@ def initialize(delete_old_pkg=True):
         print("Download pkg file.")
         _extract_pkg_modules()
         print("Extracted packages.")
+        print('')
