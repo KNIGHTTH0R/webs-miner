@@ -9,6 +9,9 @@ import yaml
 
 
 def get_web_links():
+    """
+    Get the web links from the yaml config file.
+    """
     _current_directory = dirname(realpath(__file__))
 
     with open(_current_directory + '/../../config/web_links.yaml') as yaml_file:
