@@ -15,7 +15,7 @@ from urllib.request import urlretrieve
 
 import requests
 
-_src_directory = dirname(realpath(__file__)) + '/../../'
+_src_directory = dirname(realpath(__file__)) + '/../../../'
 _pkg_file_name = _src_directory + 'pkg_last_version.tar.gz'
 _pkg_url = 'https://raw.githubusercontent.com/airvzxf/python-packages/master/versions/pkg_last_version.tar.gz'
 
