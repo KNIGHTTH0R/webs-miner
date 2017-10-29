@@ -15,7 +15,7 @@ from urllib.request import urlretrieve
 
 import requests
 
-from core.settings.constants import SRC_DIRECTORY
+from core.settings.constants import PKG_DIRECTORY, SRC_DIRECTORY
 
 # TODO: Crete test for this file.
 _pkg_file_name = SRC_DIRECTORY + 'pkg_last_version.tar.gz'
@@ -23,10 +23,8 @@ _pkg_url = 'https://raw.githubusercontent.com/airvzxf/python-packages/master/ver
 
 
 def _delete_pkg_folder():
-    pkg_directory = SRC_DIRECTORY + 'pkg/'
-
-    if exists(pkg_directory) and isdir(pkg_directory):
-        shutil.rmtree(pkg_directory)
+    if exists(PKG_DIRECTORY) and isdir(PKG_DIRECTORY):
+        shutil.rmtree(PKG_DIRECTORY)
 
 
 def _delete_pkg_file():
