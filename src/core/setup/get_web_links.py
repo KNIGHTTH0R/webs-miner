@@ -6,14 +6,14 @@
 import yaml
 
 # TODO: Crete test for this file.
-from core.settings.constants import SRC_DIRECTORY
+from core.settings.constants import PREFERENCES_WEB_LINKS
 
 
 def get_web_links():
     """
     Get the web links from the yaml preferences file.
     """
-    with open(SRC_DIRECTORY + 'preferences/web_links.yaml') as yaml_file:
+    with open(PREFERENCES_WEB_LINKS) as yaml_file:
         web_links_list_config = yaml.load(yaml_file)
 
         if not web_links_list_config:

@@ -14,3 +14,6 @@ SRC_DIRECTORY = abspath(join(_constant_file_path, '../../')) + '/'
 PKG_DIRECTORY = SRC_DIRECTORY + 'pkg/'
 PKG_FILE = SRC_DIRECTORY + 'pkg_last_version.tar.gz'
 PKG_URL = 'https://raw.githubusercontent.com/airvzxf/python-packages/master/versions/pkg_last_version.tar.gz'
+
+PREFERENCES_DIRECTORY = SRC_DIRECTORY + 'preferences/'
+PREFERENCES_WEB_LINKS = PREFERENCES_DIRECTORY + 'web_links.yaml'
