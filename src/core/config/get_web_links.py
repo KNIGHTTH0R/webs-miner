@@ -8,6 +8,7 @@ from os.path import dirname, realpath
 import yaml
 
 
+# TODO: Crete test for this file.
 def get_web_links():
     """
     Get the web links from the yaml config file.
