@@ -4,4 +4,5 @@
 """Contains all the core packages for this app."""
 
 from . import init
+from . import settings
 from . import setup
