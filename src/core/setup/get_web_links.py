@@ -3,19 +3,17 @@
 
 """Extract the web links into the preferences file and return a list."""
 
-from os.path import dirname, realpath
-
 import yaml
 
-
 # TODO: Crete test for this file.
+from core.settings.constants import SRC_DIRECTORY
+
+
 def get_web_links():
     """
     Get the web links from the yaml preferences file.
     """
-    _current_directory = dirname(realpath(__file__))
-
-    with open(_current_directory + '/../../preferences/web_links.yaml') as yaml_file:
+    with open(SRC_DIRECTORY + 'preferences/web_links.yaml') as yaml_file:
         web_links_list_config = yaml.load(yaml_file)
 
         if not web_links_list_config:

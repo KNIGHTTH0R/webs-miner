@@ -5,7 +5,8 @@
 Contain the constants for this app.
 """
 
-from os.path import dirname, realpath
+from os.path import abspath, dirname, join, realpath
 
-CURRENT_DIRECTORY = dirname(realpath(__file__)) + '/'
-SRC_DIRECTORY = CURRENT_DIRECTORY + 'src/'
+_constant_file_path = dirname(realpath(__file__))
+
+SRC_DIRECTORY = abspath(join(_constant_file_path, '../../')) + '/'

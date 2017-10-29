@@ -9,20 +9,21 @@ https://raw.githubusercontent.com/airvzxf/python-packages/master/versions/pkg_la
 import shutil
 import tarfile
 from os import remove
-from os.path import dirname, exists, isdir, realpath
+from os.path import exists, isdir
 # noinspection PyCompatibility
 from urllib.request import urlretrieve
 
 import requests
 
+from core.settings.constants import SRC_DIRECTORY
+
 # TODO: Crete test for this file.
-_src_directory = dirname(realpath(__file__)) + '/../../../'
-_pkg_file_name = _src_directory + 'pkg_last_version.tar.gz'
+_pkg_file_name = SRC_DIRECTORY + 'pkg_last_version.tar.gz'
 _pkg_url = 'https://raw.githubusercontent.com/airvzxf/python-packages/master/versions/pkg_last_version.tar.gz'
 
 
 def _delete_pkg_folder():
-    pkg_directory = _src_directory + 'pkg/'
+    pkg_directory = SRC_DIRECTORY + 'pkg/'
 
     if exists(pkg_directory) and isdir(pkg_directory):
         shutil.rmtree(pkg_directory)
@@ -57,7 +58,7 @@ def _download_pkg_modules():
 def _extract_pkg_modules():
     with tarfile.open(_pkg_file_name, 'r:gz') as tar_gz_file:
         _delete_pkg_folder()
-        tar_gz_file.extractall(_src_directory)
+        tar_gz_file.extractall(SRC_DIRECTORY)
 
 
 def initialize(delete_old_pkg=True):
