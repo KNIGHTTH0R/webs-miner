@@ -15,10 +15,9 @@ from urllib.request import urlretrieve
 
 import requests
 
-from core.settings.constants import PKG_DIRECTORY, SRC_DIRECTORY
+from core.settings.constants import PKG_DIRECTORY, PKG_FILE, SRC_DIRECTORY
 
 # TODO: Crete test for this file.
-_pkg_file_name = SRC_DIRECTORY + 'pkg_last_version.tar.gz'
 _pkg_url = 'https://raw.githubusercontent.com/airvzxf/python-packages/master/versions/pkg_last_version.tar.gz'
 
 
@@ -28,24 +27,24 @@ def _delete_pkg_folder():
 
 
 def _delete_pkg_file():
-    if exists(_pkg_file_name):
-        remove(_pkg_file_name)
+    if exists(PKG_FILE):
+        remove(PKG_FILE)
 
 
 def _download_pkg_file():
     _delete_pkg_file()
-    urlretrieve(_pkg_url, _pkg_file_name)
+    urlretrieve(_pkg_url, PKG_FILE)
 
 
 def _download_pkg_modules():
-    if not exists(_pkg_file_name):
+    if not exists(PKG_FILE):
         _download_pkg_file()
         return True
 
     response = requests.head(_pkg_url)
     file_size = int(response.headers.get('Content-Length'))
 
-    with open(_pkg_file_name, 'rb') as local_file:
+    with open(PKG_FILE, 'rb') as local_file:
         if file_size != len(local_file.read()):
             _download_pkg_file()
             return True
@@ -54,7 +53,7 @@ def _download_pkg_modules():
 
 
 def _extract_pkg_modules():
-    with tarfile.open(_pkg_file_name, 'r:gz') as tar_gz_file:
+    with tarfile.open(PKG_FILE, 'r:gz') as tar_gz_file:
         _delete_pkg_folder()
         tar_gz_file.extractall(SRC_DIRECTORY)
 
