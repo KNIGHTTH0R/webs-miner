@@ -15,12 +15,10 @@ from urllib.request import urlretrieve
 
 import requests
 
-from core.settings.constants import PKG_DIRECTORY, PKG_FILE, SRC_DIRECTORY
+from core.settings.constants import PKG_DIRECTORY, PKG_FILE, PKG_URL, SRC_DIRECTORY
+
 
 # TODO: Crete test for this file.
-_pkg_url = 'https://raw.githubusercontent.com/airvzxf/python-packages/master/versions/pkg_last_version.tar.gz'
-
-
 def _delete_pkg_folder():
     if exists(PKG_DIRECTORY) and isdir(PKG_DIRECTORY):
         shutil.rmtree(PKG_DIRECTORY)
@@ -33,7 +31,7 @@ def _delete_pkg_file():
 
 def _download_pkg_file():
     _delete_pkg_file()
-    urlretrieve(_pkg_url, PKG_FILE)
+    urlretrieve(PKG_URL, PKG_FILE)
 
 
 def _download_pkg_modules():
@@ -41,7 +39,7 @@ def _download_pkg_modules():
         _download_pkg_file()
         return True
 
-    response = requests.head(_pkg_url)
+    response = requests.head(PKG_URL)
     file_size = int(response.headers.get('Content-Length'))
 
     with open(PKG_FILE, 'rb') as local_file:
