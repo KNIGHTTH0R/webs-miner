@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-"""Extract the web links into the preferences file and return a list."""
+"""
+Extract the web links into the preferences file and return a list.
+"""
 
 import yaml
 

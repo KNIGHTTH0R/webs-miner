@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-"""Extract information from a web page and save in a database then you can visualized in a char.
+"""
+Extract information from a web page and save in a database then you can visualized in a char.
 Download the last version of the pkg modules which is my personal library.
 https://raw.githubusercontent.com/airvzxf/python-packages/master/versions/pkg_last_version.tar.gz
 """
@@ -57,7 +58,8 @@ def _extract_pkg_modules():
 
 
 def initialize(delete_old_pkg=True):
-    """Init the process to check the external packages.
+    """
+    Init the process to check the external packages.
     Check if the external packages exist otherwise it remove the old then download and extract the new packages.
     """
 
