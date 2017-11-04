@@ -8,7 +8,7 @@ Download and init the external pkg.
 from os.path import exists
 
 from core.settings.constants import PKG_DIRECTORY
-from . import download_external_pkg
+from .download_external_pkg import download_external_pkg
 
 
 def initialize(force_init=False):
@@ -17,4 +17,4 @@ def initialize(force_init=False):
     the external package.
     """
     if force_init or not exists(PKG_DIRECTORY):
-        download_external_pkg.download_external_pkg.initialize(delete_old_pkg=True)
+        download_external_pkg.initialize(delete_old_pkg=True)
